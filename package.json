@@ -1,0 +1,78 @@
+{
+  "name": "normdoc",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "dev": "vite",
+    "dev:desktop": "concurrently -k \"vite\" \"wait-on http://localhost:5173 && electron .\"",
+    "build": "tsc -b && vite build",
+    "start:desktop": "electron .",
+    "dist:win": "npm run build && electron-builder --win nsis",
+    "tauri": "tauri",
+    "tauri:dev": "tauri dev",
+    "tauri:build": "tauri build"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2.12.4",
+    "@tauri-apps/plugin-dialog": "^2.8.4",
+    "@tauri-apps/plugin-fs": "^2.7.1",
+    "@tiptap/extension-color": "^3.32.1",
+    "@tiptap/extension-font-family": "^3.32.1",
+    "@tiptap/extension-highlight": "^3.32.1",
+    "@tiptap/extension-image": "^3.32.1",
+    "@tiptap/extension-link": "^3.32.1",
+    "@tiptap/extension-subscript": "^3.32.1",
+    "@tiptap/extension-superscript": "^3.32.1",
+    "@tiptap/extension-table": "^3.32.1",
+    "@tiptap/extension-table-cell": "^3.32.1",
+    "@tiptap/extension-table-header": "^3.32.1",
+    "@tiptap/extension-table-row": "^3.32.1",
+    "@tiptap/extension-text-align": "^3.32.1",
+    "@tiptap/extension-text-style": "^3.32.1",
+    "@tiptap/extension-underline": "^3.32.1",
+    "@tiptap/pm": "^3.32.1",
+    "@tiptap/react": "^3.32.1",
+    "@tiptap/starter-kit": "^3.32.1",
+    "docx": "^9.15.0",
+    "lucide-react": "^1.65.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.12.4",
+    "@types/node": "^24.19.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "concurrently": "^10.0.6",
+    "electron": "^45.1.0",
+    "electron-builder": "^26.18.0",
+    "oxlint": "^1.89.0",
+    "typescript": "~7.0.2",
+    "vite": "^8.3.5",
+    "wait-on": "^9.5.1"
+  },
+  "build": {
+    "appId": "ru.normdoc.app",
+    "productName": "НормДок",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}
